@@ -1,4 +1,4 @@
-package net.droidlabs.tools.time;
+package net.droidlabs.tools.preferences;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -39,7 +39,7 @@ public class TimePreference extends DialogPreference
 	protected View onCreateDialogView()
 	{
 		picker = new TimePicker(getContext());
-
+		picker.setIs24HourView(true);
 		return (picker);
 	}
 
