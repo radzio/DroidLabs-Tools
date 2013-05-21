@@ -2,7 +2,6 @@
 <resources>
 
     <string name="hello">Hello World!</string>
-    <string name="app_name">DroidLabsTools</string>
     <string name="summary">Current answer is: %1$d</string>
     <string name="dialog_title">Ultimate Question Answer</string>
     <color name="white_color">#fff</color>

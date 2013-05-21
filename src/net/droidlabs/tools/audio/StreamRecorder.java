@@ -16,16 +16,21 @@ public class StreamRecorder
 	private String fileName;
 	private URL url;
 	private static final String TAG = "StreamRecorder";
-	public StreamRecorder()
+    private String dir;
+
+    public StreamRecorder()
 	{
 		extStorageDirectory = Environment.getExternalStorageDirectory().toString();
-		continueRecording = true;
+		continueRecording = false;
+        Log.i(TAG, extStorageDirectory);
 	}
 
-	public void startRecording(URL url, String fileName)
+	public void startRecording(URL url, final String dir,  String fileName)
 	{
 		this.url = url;
 		this.fileName = fileName;
+        this.dir = dir;
+        this.continueRecording = true;
 		Log.d(TAG, "startRecording");
 		new Thread("recordingThread")
 		{
@@ -34,7 +39,7 @@ public class StreamRecorder
 				try
 				{
 					InputStream inputStream = StreamRecorder.this.url.openStream();
-					File outputSource = new File(extStorageDirectory, StreamRecorder.this.fileName);
+					File outputSource = new File(dir, StreamRecorder.this.fileName);
 					FileOutputStream fileOutputStream = new FileOutputStream(outputSource);
 
 					int count;
@@ -60,4 +65,9 @@ public class StreamRecorder
 		Log.d(TAG, "stopRecording");
 		this.continueRecording = false;
 	}
+
+    public boolean isRecording()
+    {
+        return this.continueRecording;
+    }
 }
